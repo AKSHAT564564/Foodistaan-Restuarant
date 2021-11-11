@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
+import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _switchValue = false;
+  bool _orderReady = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +102,11 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: MaterialButton(
                     elevation: 5,
-                    onPressed: null,
+                    onPressed: () {
+                      setState(() {
+                        _orderReady = false;
+                      });
+                    },
                     child: Text(
                       "Preparing",
                       style: TextStyle(color: Colors.black),
@@ -115,7 +122,11 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: MaterialButton(
                     elevation: 5,
-                    onPressed: null,
+                    onPressed: () {
+                      setState(() {
+                        _orderReady = true;
+                      });
+                    },
                     child: Text(
                       "Ready",
                       style: TextStyle(color: Colors.black),
@@ -141,6 +152,12 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          Container(
+              padding: EdgeInsets.all(10),
+              child: _orderReady == false ? OrderWidget() : OrderReadyWidget()),
+          Container(
+              padding: EdgeInsets.all(10),
+              child: _orderReady == false ? OrderWidget() : OrderReadyWidget()),
         ],
       ),
     );
