@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(toolbarHeight: 5, backgroundColor: Colors.white),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             padding: EdgeInsets.all(10),
