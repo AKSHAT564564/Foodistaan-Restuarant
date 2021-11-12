@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MenuWidget extends StatefulWidget {
-  const MenuWidget({
+class MenuWidget extends StatelessWidget {
+  MenuWidget({
     required this.image,
     required this.name,
     required this.desc,
@@ -14,11 +14,6 @@ class MenuWidget extends StatefulWidget {
   final String desc;
   final double price;
 
-  @override
-  _MenuWidgetState createState() => _MenuWidgetState();
-}
-
-class _MenuWidgetState extends State<MenuWidget> {
   bool _switchValue = false;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +30,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   left: MediaQuery.of(context).size.width * 0.02),
               width: MediaQuery.of(context).size.width * 0.2,
               child: Image.asset(
-                'assets/images/dosa.png',
+                'assets/images/$image',
                 fit: BoxFit.fill,
               ),
             ),
@@ -51,7 +46,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   Row(
                     children: [
                       Text(
-                        "Masala Dosa",
+                        "$name",
                         style: TextStyle(fontSize: 18),
                       ),
                       Padding(
@@ -65,7 +60,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         top: MediaQuery.of(context).size.width * 0.01),
                     child: SafeArea(
                         child: Text(
-                      "Prepared freshly with some basil and Kadi Patta",
+                      "$desc",
                       style: TextStyle(fontSize: 14),
                     )),
                   ),
@@ -75,7 +70,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                     child: Row(
                       children: [
                         Text(
-                          "₹100",
+                          "₹$price",
                           style: TextStyle(fontSize: 16),
                         ),
                         Padding(
