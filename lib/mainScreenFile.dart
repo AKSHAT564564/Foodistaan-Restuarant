@@ -25,7 +25,7 @@ class _mainScreenFileState extends State<MainScreenFile> {
   static List<Widget> myScreens = <Widget>[
     HomePage(),
     Insights(),
-    Payments(),
+    Payment(),
     Offer(),
     Menu(),
   ];

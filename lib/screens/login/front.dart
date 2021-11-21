@@ -8,26 +8,6 @@ class UserDetail extends StatefulWidget {
   _UserDetailState createState() => _UserDetailState();
 }
 
-// addUser(_userData) {
-//   try {
-//     FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(_userData['phoneNumber'])
-//         .set({
-//       'name': _userData['name'],
-//       'email': _userData['email'],
-//       'phoneNumber': _userData['phoneNumber'],
-//       'dateAndTime': _userData['dateAndTime'],
-//       'profilePic': _userData['profilePic']
-//     });
-//   } on Exception catch (e) {
-//     print(e.toString());
-//     return false;
-//   }
-
-//   return true;
-// }
-
 class _UserDetailState extends State<UserDetail> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
