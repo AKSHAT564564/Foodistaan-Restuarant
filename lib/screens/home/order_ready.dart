@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/functions/order_functions.dart';
 
 class OrderReadyWidget extends StatefulWidget {
-  OrderReadyWidget({Key? key}) : super(key: key);
+  var orderData;
+  OrderReadyWidget({required this.orderData});
 
   @override
   _OrderReadyWidgetState createState() => _OrderReadyWidgetState();
@@ -27,7 +30,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
                   Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "ID:48444 6759",
+                        widget.orderData!['order-id'],
                         style: TextStyle(fontSize: 14, color: Colors.black),
                       )),
                   Container(
@@ -35,7 +38,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
                     child: Row(
                       children: [
                         Text(
-                          "6:30",
+                          OrderFunctions().orderTime(widget.orderData!['time']),
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                         Icon(
@@ -63,40 +66,31 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
                             elevation: 5,
                             onPressed: null,
                             child: Text(
-                              "PREPARING",
+                              'Ready For Pickup',
                               style: TextStyle(color: Colors.white),
                             )))),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  child: Text(
-                    "Sameer's 10th order",
-                    style: TextStyle(fontSize: 10, color: Colors.teal),
-                  ),
-                )
+                // Container(
+                //   margin: EdgeInsets.only(
+                //     left: MediaQuery.of(context).size.height * 0.02,
+                //   ),
+                //   child: Text(
+                //     "Sameer's 10th order",
+                //     style: TextStyle(fontSize: 10, color: Colors.teal),
+                //   ),
+                // )
               ],
             ),
             Container(
-              margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.02,
-              ),
-              alignment: Alignment.centerLeft,
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("1 X Butter Special Pav Bhaji",
-                      style: TextStyle(fontSize: 14)),
-                  Text("3 X Garlic Naan", style: TextStyle(fontSize: 15)),
-                ],
-              ),
-            ),
+                margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.02,
+                ),
+                alignment: Alignment.centerLeft,
+                height: MediaQuery.of(context).size.height * 0.07,
+                child: OrderFunctions().itemsList(widget.orderData!['items'])),
             Container(
                 alignment: Alignment.centerLeft,
-                child:
-                    Text("Total bill : ₹299", style: TextStyle(fontSize: 14))),
+                child: Text("Total bill : ₹${widget.orderData['total-bill']}",
+                    style: TextStyle(fontSize: 14))),
             Container(
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.01),
@@ -107,9 +101,12 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
               width: MediaQuery.of(context).size.width * 0.9,
               child: MaterialButton(
                 elevation: 5,
-                onPressed: null,
+                onPressed: () async {
+                  await OrderFunctions()
+                      .setOrderPicked(widget.orderData!['order-id']);
+                },
                 child: Text(
-                  "ORDER READY",
+                  "ORDER PickedUp?",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
