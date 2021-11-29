@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';
+import 'package:foodistaan_restuarant/screens/menu/menu_widget_offline.dart';
+import 'package:foodistaan_restuarant/screens/menu/menu_widget_online.dart';
 
 class Menu extends StatefulWidget {
   Menu({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  bool _switchValue = false;
+  bool _isOutletOnline = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +23,19 @@ class _MenuState extends State<Menu> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CupertinoSwitch(value: _switchValue, onChanged: null),
+                CupertinoSwitch(
+                    activeColor: Colors.green,
+                    value: _isOutletOnline,
+                    onChanged: (value) {
+                      _isOutletOnline = value;
+                      setState(() {});
+                    }),
                 Text(
-                  "Outlet online",
-                  style: TextStyle(fontSize: 14, color: Colors.green),
+                  _isOutletOnline == true ? "Outlet online" : "Outlet offline",
+                  style: TextStyle(
+                      fontSize: 14,
+                      color:
+                          _isOutletOnline == true ? Colors.green : Colors.red),
                 )
               ],
             ),
@@ -34,6 +44,7 @@ class _MenuState extends State<Menu> {
             padding: EdgeInsets.only(top: 10, left: 10),
             height: MediaQuery.of(context).size.height * 0.1,
             child: TextFormField(
+                enabled: _isOutletOnline == true ? true : false,
                 decoration: InputDecoration(
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(8),
@@ -43,13 +54,17 @@ class _MenuState extends State<Menu> {
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(
-                          color: Colors.amber,
+                          color: _isOutletOnline == true
+                              ? Colors.amber
+                              : Colors.grey,
                           width: 2.0,
                         )),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(
-                          color: Colors.amber,
+                          color: _isOutletOnline == true
+                              ? Colors.amber
+                              : Colors.grey,
                           width: 2.0,
                         )))),
           ),
@@ -68,25 +83,37 @@ class _MenuState extends State<Menu> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: MenuWidget(
-              name: "Masala Dosa",
-              image: "dosa.png",
-              desc: "Prepared freshly with some basil and Kadi Patta",
-              price: 100,
-            ),
-          ),
+              padding: EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: _isOutletOnline == true
+                  ? MenuWidgetOnline(
+                      name: "Masala Dosa",
+                      image: "dosa.png",
+                      desc: "Prepared freshly with some basil and Kadi Patta",
+                      price: 100,
+                    )
+                  : MenuWidgetOffline(
+                      name: "Masala Dosa",
+                      image: "dosa.png",
+                      desc: "Prepared freshly with some basil and Kadi Patta",
+                      price: 100,
+                    )),
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: MenuWidget(
-              name: "Masala Dosa",
-              image: "dosa.png",
-              desc: "Prepared freshly with some basil and Kadi Patta",
-              price: 100,
-            ),
-          ),
+              padding: EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: _isOutletOnline == true
+                  ? MenuWidgetOnline(
+                      name: "Masala Dosa",
+                      image: "dosa.png",
+                      desc: "Prepared freshly with some basil and Kadi Patta",
+                      price: 100,
+                    )
+                  : MenuWidgetOffline(
+                      name: "Masala Dosa",
+                      image: "dosa.png",
+                      desc: "Prepared freshly with some basil and Kadi Patta",
+                      price: 100,
+                    )),
           Container(
             padding: EdgeInsets.only(top: 10, left: 10),
             child: Text(
@@ -96,24 +123,38 @@ class _MenuState extends State<Menu> {
           ),
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: MenuWidget(
-              name: "Momos",
-              image: "momos.png",
-              desc: "Prepared freshly with some basil and Kadi Patta",
-              price: 120,
-            ),
+            height: MediaQuery.of(context).size.height * 0.2,
+            child: _isOutletOnline == true
+                ? MenuWidgetOnline(
+                    name: "Momos",
+                    image: "momos.png",
+                    desc: "Prepared freshly with some basil and Kadi Patta",
+                    price: 120,
+                  )
+                : MenuWidgetOffline(
+                    name: "Momos",
+                    image: "momos.png",
+                    desc: "Prepared freshly with some basil and Kadi Patta",
+                    price: 120,
+                  ),
           ),
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: MenuWidget(
-              name: "Momos",
-              image: "momos.png",
-              desc: "Prepared freshly with some basil and Kadi Patta",
-              price: 120,
-            ),
-          )
+            height: MediaQuery.of(context).size.height * 0.2,
+            child: _isOutletOnline == true
+                ? MenuWidgetOnline(
+                    name: "Momos",
+                    image: "momos.png",
+                    desc: "Prepared freshly with some basil and Kadi Patta",
+                    price: 120,
+                  )
+                : MenuWidgetOffline(
+                    name: "Momos",
+                    image: "momos.png",
+                    desc: "Prepared freshly with some basil and Kadi Patta",
+                    price: 120,
+                  ),
+          ),
         ],
       ),
     );

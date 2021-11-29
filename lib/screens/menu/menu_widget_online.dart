@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MenuWidget extends StatelessWidget {
-  MenuWidget({
+class MenuWidgetOnline extends StatelessWidget {
+  MenuWidgetOnline({
     required this.image,
     required this.name,
     required this.desc,

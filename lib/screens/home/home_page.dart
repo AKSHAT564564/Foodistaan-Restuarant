@@ -28,37 +28,38 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.14,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CupertinoSwitch(value: _switchValue, onChanged: null),
-                          Text(
-                            "Outlet online",
-                            style: TextStyle(fontSize: 14, color: Colors.green),
-                          )
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: null,
-                        child: Text(
-                          "Update you Restraunt Info.",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.red,
-                          ),
+            height: MediaQuery.of(context).size.height * 0.23,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CupertinoSwitch(value: _switchValue, onChanged: null),
+                        Text(
+                          "Outlet online",
+                          style: TextStyle(fontSize: 14, color: Colors.green),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: null,
+                      child: Text(
+                        "Update you Restraunt Info.",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.red,
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
+                    ),
+                  ],
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -70,33 +71,35 @@ class _HomePageState extends State<HomePage> {
                         size: 20,
                       )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: TextFormField(
-                decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Icon(Icons.search),
-                    ),
-                    hintText: "Search by order ID",
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.amber,
-                          width: 2.0,
-                        )),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.amber,
-                          width: 2.0,
-                        )))),
+            height: MediaQuery.of(context).size.height * 0.15,
+            child: Center(
+              child: TextFormField(
+                  decoration: InputDecoration(
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Icon(Icons.search),
+                      ),
+                      hintText: "Search by order ID",
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            color: Colors.amber,
+                            width: 2.0,
+                          )),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            color: Colors.amber,
+                            width: 2.0,
+                          )))),
+            ),
           ),
           Container(
             height: MediaQuery.of(context).size.height * 0.08,
@@ -164,12 +167,18 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Container(
-              child: _orderPreparing
-                  ? OrderFunctions().receivedOrder()
-                  : _orderReady
-                      ? OrderFunctions().readyOrders()
-                      : OrderPicked()),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+                child: _orderPreparing
+                    ? OrderFunctions().receivedOrder()
+                    : _orderReady
+                        ? OrderFunctions().readyOrders()
+                        : OrderPicked()),
+          ),
         ],
       ),
     );

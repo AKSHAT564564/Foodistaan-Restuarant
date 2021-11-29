@@ -15,6 +15,7 @@ class _OrderWidgetState extends State<OrderWidget> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
+        margin: EdgeInsets.only(bottom: 15),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 1),
