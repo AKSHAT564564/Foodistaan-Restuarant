@@ -7,35 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:201527710402:android:2be669d27f0c952602215b",
-        "android_client_info": {
-          "package_name": "com.example.foodistaan_restuarant"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "201527710402-epeq8m4952k6samd6q48lfmimj0s3qk8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB7KtuC2VhUBU5BgnKSKzypxCebnIDtskc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "201527710402-epeq8m4952k6samd6q48lfmimj0s3qk8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:201527710402:android:e243635504ddff4402215b",
         "android_client_info": {
           "package_name": "com.example.foodistan"
