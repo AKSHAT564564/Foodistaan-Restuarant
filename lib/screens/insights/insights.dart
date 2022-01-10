@@ -60,7 +60,7 @@ class _InsightsState extends State<Insights> {
           ),
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.31,
+            height: MediaQuery.of(context).size.height * 0.22,
             child: InsightWidget(),
           ),
           Container(
@@ -115,7 +115,7 @@ class _InsightsState extends State<Insights> {
           ),
           Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.31,
+            height: MediaQuery.of(context).size.height * 0.22,
             child: InsightWidget(),
           ),
         ],

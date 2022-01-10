@@ -11,8 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
-    // initialRoute: FirebaseAuth.instance.currentUser != null ? 'Main' : 'L',
-    initialRoute: 'Main',
+    initialRoute: FirebaseAuth.instance.currentUser != null ? 'Main' : 'L',
     routes: {
       'Main': (context) => MainScreenFile(),
       'SS': (context) => SplashScreen(),
