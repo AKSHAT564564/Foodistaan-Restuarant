@@ -1,15 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
 import 'package:flutter/material.dart';
 
 class OrderFunctions {
+  var vendorID = FirebaseAuth.instance.currentUser!.email;
+  findVendorId() {
+    var splittedVendorID = vendorID!.split('@');
+    // print(vendorID);
+    // return (splittedVendorID[0]);
+    return splittedVendorID[0].toLowerCase() == 'streetfood1'
+        ? 'StreetFood1'
+        : 'StreetFood2';
+  }
+
   Widget receivedOrder() {
+    // var findedVendorId = findVendorId();
+    print(findVendorId());
     ScrollController _controller = ScrollController();
+
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
-        .where('vendor-id', isEqualTo: 'StreetFood1')
+        .where('vendor-id', isEqualTo: findVendorId())
         .where('order-status', isEqualTo: 'preparing')
         .snapshots();
     return StreamBuilder(
@@ -95,7 +109,7 @@ class OrderFunctions {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
-        .where('vendor-id', isEqualTo: 'StreetFood1')
+        .where('vendor-id', isEqualTo: findVendorId())
         .where('order-status', isEqualTo: 'ready')
         .snapshots();
 
@@ -140,7 +154,7 @@ class OrderFunctions {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
-        .where('vendor-id', isEqualTo: 'StreetFood1')
+        .where('vendor-id', isEqualTo: findVendorId())
         .where('order-status', isEqualTo: 'picked-up')
         .snapshots();
 
@@ -185,6 +199,7 @@ class OrderFunctions {
     String _orderStatus = orderStatus.toString().toUpperCase();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
+        .where('vendor-id', isEqualTo: findVendorId())
         .where('order-status', isEqualTo: orderStatus)
         .snapshots();
 
