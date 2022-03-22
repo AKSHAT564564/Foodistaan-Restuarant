@@ -5,6 +5,7 @@ import 'package:foodistaan_restuarant/functions/order_functions.dart';
 import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
+import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.14,
+            padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
+            height: 12.5.h,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,7 +43,8 @@ class _HomePageState extends State<HomePage> {
                           CupertinoSwitch(value: _switchValue, onChanged: null),
                           Text(
                             "Outlet online",
-                            style: TextStyle(fontSize: 14, color: Colors.green),
+                            style:
+                                TextStyle(fontSize: 12.sp, color: Colors.green),
                           )
                         ],
                       ),
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                           "Update you Restraunt Info.",
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 12.sp,
                             color: Colors.red,
                           ),
                         ),
@@ -63,11 +65,11 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "Accepting Orders",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16.sp),
                       ),
                       Icon(
                         Icons.notification_important,
-                        size: 20,
+                        size: 18.sp,
                       )
                     ],
                   )
@@ -76,9 +78,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.1,
+            margin: EdgeInsets.only(bottom: 1.5.h),
+            padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
+            height: 8.h,
             child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(8),
@@ -99,7 +103,8 @@ class _HomePageState extends State<HomePage> {
                         )))),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.08,
+            padding: EdgeInsets.only(left: 0.8.w, right: 0.8.w),
+            height: 8.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -169,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                   ? OrderFunctions().receivedOrder()
                   : _orderReady
                       ? OrderFunctions().readyOrders()
-                      : OrderPicked()),
+                      : OrderFunctions().pickedOrders()),
         ],
       ),
     );

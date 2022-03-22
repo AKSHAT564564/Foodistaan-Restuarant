@@ -14,6 +14,7 @@ class _InsightsState extends State<Insights> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
@@ -21,10 +22,6 @@ class _InsightsState extends State<Insights> {
             icon: Icon(Icons.reorder, color: Colors.black),
           ),
         ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         title: Text(
           "Business Insights",
           style: TextStyle(color: Colors.black),

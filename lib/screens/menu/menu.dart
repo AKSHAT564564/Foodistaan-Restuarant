@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';
+import 'package:sizer/sizer.dart';
 
 class Menu extends StatefulWidget {
   Menu({Key? key}) : super(key: key);
@@ -25,15 +26,17 @@ class _MenuState extends State<Menu> {
                 CupertinoSwitch(value: _switchValue, onChanged: null),
                 Text(
                   "Outlet online",
-                  style: TextStyle(fontSize: 14, color: Colors.green),
+                  style: TextStyle(fontSize: 12.sp, color: Colors.green),
                 )
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10, left: 10),
-            height: MediaQuery.of(context).size.height * 0.1,
+            margin: EdgeInsets.only(top: 2.5.h),
+            padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
+            height: 8.h,
             child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(8),

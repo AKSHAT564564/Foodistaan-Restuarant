@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -61,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Container(
                 width: MediaQuery.of(context).size.width * 1,
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.25,
                 child: Image.asset('Images/top.jpeg',
                     height: 20, fit: BoxFit.fill)),
             Container(
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   top: MediaQuery.of(context).size.height * 0.05,
                 ),
                 width: MediaQuery.of(context).size.height * 0.5,
-                height: MediaQuery.of(context).size.height * 0.18,
+                // height: MediaQuery.of(context).size.height * 0.18,
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -85,6 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       textFormFeild(
                           emailController, false, 'email', emailError),
+                      SizedBox(
+                        height: 1.5.h,
+                      ),
                       textFormFeild(
                           passwordController, true, 'password', passwordError)
                     ],
