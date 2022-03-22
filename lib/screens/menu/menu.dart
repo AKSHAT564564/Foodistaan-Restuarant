@@ -23,7 +23,13 @@ class _MenuState extends State<Menu> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CupertinoSwitch(value: _switchValue, onChanged: null),
+                CupertinoSwitch(
+                    value: _switchValue,
+                    onChanged: (newSwitchValue) {
+                      setState(() {
+                        _switchValue = newSwitchValue;
+                      });
+                    }),
                 Text(
                   "Outlet online",
                   style: TextStyle(fontSize: 12.sp, color: Colors.green),
@@ -34,7 +40,7 @@ class _MenuState extends State<Menu> {
           Container(
             margin: EdgeInsets.only(top: 2.5.h),
             padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
-            height: 8.h,
+            height: 7.h,
             child: TextFormField(
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
