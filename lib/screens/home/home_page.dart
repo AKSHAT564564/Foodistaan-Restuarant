@@ -71,7 +71,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CupertinoSwitch(
-                                value: _switchValue, onChanged: null),
+                                value: _switchValue,
+                                onChanged: (newSwitchValue) {
+                                  setState(() {
+                                    _switchValue = newSwitchValue;
+                                  });
+                                }),
                             Text(
                               "Outlet online",
                               style:
