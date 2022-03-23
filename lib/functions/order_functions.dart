@@ -6,10 +6,9 @@ import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class OrderFunctions {
-<<<<<<< HEAD
-<<<<<<< HEAD
   var vendorID = FirebaseAuth.instance.currentUser!.email;
   findVendorId() {
     var splittedVendorID = vendorID!.split('@');
@@ -20,14 +19,6 @@ class OrderFunctions {
   }
 
   Widget receivedOrder() {
-    // var findedVendorId = findVendorId();
-
-=======
-  Widget receivedOrder() {
->>>>>>> parent of 8782657 (Merge pull request #1 from LONEWOLF-tech/main)
-=======
-  Widget receivedOrder() {
->>>>>>> parent of 8782657 (Merge pull request #1 from LONEWOLF-tech/main)
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
@@ -171,16 +162,8 @@ class OrderFunctions {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
-<<<<<<< HEAD
-<<<<<<< HEAD
         .where('vendor-id', isEqualTo: findVendorId())
-        .where('order-status', isEqualTo: 'picked')
-=======
-=======
->>>>>>> parent of 8782657 (Merge pull request #1 from LONEWOLF-tech/main)
-        .where('vendor-id', isEqualTo: 'StreetFood1')
         .where('order-status', isEqualTo: 'picked-up')
->>>>>>> parent of 8782657 (Merge pull request #1 from LONEWOLF-tech/main)
         .snapshots();
 
     return StreamBuilder(
