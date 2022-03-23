@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodistaan_restuarant/screens/categories/categoriesScreen.dart';
 import 'package:foodistaan_restuarant/screens/home/home_page.dart';
 import 'package:foodistaan_restuarant/screens/insights/insights.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu.dart';
@@ -27,8 +26,7 @@ class _mainScreenFileState extends State<MainScreenFile> {
     HomePage(),
     Insights(),
     Payment(),
-    // Offer(),
-    CategoriesScreen(),
+    Offer(),
     Menu(),
   ];
 
@@ -65,7 +63,7 @@ class _mainScreenFileState extends State<MainScreenFile> {
             icon: Icon(
               Icons.disc_full_outlined,
             ),
-            label: 'Categories',
+            label: 'Offers',
           ),
           BottomNavigationBarItem(
             icon: Icon(
