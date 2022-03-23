@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/functions/order_functions.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class OrderReadyWidget extends StatefulWidget {
   var orderData;
@@ -10,10 +11,12 @@ class OrderReadyWidget extends StatefulWidget {
   _OrderReadyWidgetState createState() => _OrderReadyWidgetState();
 }
 
-class _OrderReadyWidgetState extends State<OrderReadyWidget> {
+class _OrderReadyWidgetState extends State<OrderReadyWidget>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Padding(
+      padding: const EdgeInsets.all(8),
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -30,7 +33,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
                   Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        widget.orderData!['order-id'],
+                        'Id: ' + widget.orderData!['order-id'],
                         style: TextStyle(fontSize: 14, color: Colors.black),
                       )),
                   Container(
@@ -66,24 +69,14 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
                             elevation: 5,
                             onPressed: null,
                             child: Text(
-                              'Ready For Pickup',
+                              widget.orderData['order-status']
+                                  .toString()
+                                  .toUpperCase(),
                               style: TextStyle(color: Colors.white),
                             )))),
-                // Container(
-                //   margin: EdgeInsets.only(
-                //     left: MediaQuery.of(context).size.height * 0.02,
-                //   ),
-                //   child: Text(
-                //     "Sameer's 10th order",
-                //     style: TextStyle(fontSize: 10, color: Colors.teal),
-                //   ),
-                // )
               ],
             ),
             Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.02,
-                ),
                 alignment: Alignment.centerLeft,
                 height: MediaQuery.of(context).size.height * 0.07,
                 child: OrderFunctions().itemsList(widget.orderData!['items'])),
@@ -102,8 +95,38 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
               child: MaterialButton(
                 elevation: 5,
                 onPressed: () async {
-                  await OrderFunctions()
-                      .setOrderPicked(widget.orderData!['order-id']);
+                  await Alert(
+                    context: context,
+                    type: AlertType.warning,
+                    title: "RFLUTTER ALERT",
+                    desc: "Flutter is more awesome with RFlutter Alert.",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "Yes",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () => OrderFunctions()
+                            .setOrderPicked(widget.orderData!['order-id'])
+                            .then((v) {
+                          Navigator.pop(context);
+                        }),
+                        color: Color.fromRGBO(0, 179, 134, 1.0),
+                      ),
+                      DialogButton(
+                        child: Text(
+                          "GRADIENT",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        gradient: LinearGradient(colors: [
+                          Color.fromRGBO(116, 116, 191, 1.0),
+                          Color.fromRGBO(52, 138, 199, 1.0)
+                        ]),
+                      )
+                    ],
+                  ).show();
+                  return;
                 },
                 child: Text(
                   "ORDER PickedUp?",
@@ -116,4 +139,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -117,7 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             email: _userData['email'],
                             password: _userData['password']);
                         if (user != null) {
-                          Navigator.pushNamed(context, 'Main');
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, 'Main', (route) => false);
                         }
                       }
                     } on FirebaseAuthException catch (e) {
