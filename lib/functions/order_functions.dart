@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
 import 'package:flutter/material.dart';
@@ -106,13 +105,6 @@ class OrderFunctions {
         .update({'order-status': 'picked'});
   }
 
-  setOrderDelivered(orderID) async {
-    await FirebaseFirestore.instance
-        .collection('live-orders')
-        .doc(orderID)
-        .update({'order-status': 'delivered'});
-  }
-
   Widget readyOrders() {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
@@ -163,7 +155,7 @@ class OrderFunctions {
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
         .where('vendor-id', isEqualTo: findVendorId())
-        .where('order-status', isEqualTo: 'picked')
+        .where('order-status', isEqualTo: 'picked-up')
         .snapshots();
 
     return StreamBuilder(
@@ -173,7 +165,7 @@ class OrderFunctions {
             case ConnectionState.none:
             case ConnectionState.waiting:
               return Center(
-                child: Text('Fetching Picked Orders'),
+                child: Text('Fetching Ready Orders'),
               );
             default:
               if (snapshot.hasData) {
@@ -190,8 +182,7 @@ class OrderFunctions {
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (BuildContext context, int index) {
                         var orderData = snapshot.data!.docs[index].data();
-
-                        return OrderPicked(orderData: orderData);
+                        return OrderReadyWidget(orderData: orderData);
                       });
                 }
               } else {
