@@ -71,7 +71,7 @@ class _mainScreenFileState extends State<MainScreenFile> {
             icon: Icon(
               Icons.disc_full_outlined,
             ),
-            label: 'Categories',
+            label: 'StreatoPur',
           ),
           BottomNavigationBarItem(
             icon: Icon(

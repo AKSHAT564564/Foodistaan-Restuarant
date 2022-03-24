@@ -8,8 +8,8 @@ const kGreen = Color.fromRGBO(0, 128, 0, 1);
 const kGreenO = Color.fromRGBO(0, 144, 23, 1);
 const kGreenTag = Color.fromRGBO(8, 159, 87, 1);
 const kCreamSearch = Color.fromRGBO(252, 225, 158, 0.21);
-const kOrange = Color.fromRGBO(255, 211, 121, 1);
-const kOrangeLight = Color.fromRGBO(255, 250, 204, 1);
+const kAmber = Color.fromRGBO(255, 211, 121, 1);
+const kAmberLight = Color.fromRGBO(255, 250, 204, 1);
 
 // Colors
 
