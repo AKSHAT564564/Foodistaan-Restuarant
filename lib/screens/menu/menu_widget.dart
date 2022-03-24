@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/constants.dart';
+import 'package:sizer/sizer.dart';
 
-class MenuWidget extends StatelessWidget {
+class MenuWidget extends StatefulWidget {
   MenuWidget({
     required this.image,
     required this.name,
@@ -14,15 +16,26 @@ class MenuWidget extends StatelessWidget {
   final String desc;
   final double price;
 
+  @override
+  State<MenuWidget> createState() => _MenuWidgetState();
+}
+
+class _MenuWidgetState extends State<MenuWidget> {
   bool _switchValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        decoration: BoxDecoration(
+        foregroundDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.black, width: 0.5),
-            color: Colors.yellow[100]),
+            color: _switchValue ? null : kGreyDark2.withOpacity(0.5)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black, width: 0.5),
+          color: _switchValue ? kAmberLight : kGreyLight,
+        ),
         child: Row(
           children: [
             Container(
@@ -30,7 +43,7 @@ class MenuWidget extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.02),
               width: MediaQuery.of(context).size.width * 0.2,
               child: Image.asset(
-                'assets/images/$image',
+                'assets/images/${widget.image}',
                 fit: BoxFit.fill,
               ),
             ),
@@ -46,8 +59,11 @@ class MenuWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "$name",
-                        style: TextStyle(fontSize: 18),
+                        "${widget.name}",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -58,11 +74,10 @@ class MenuWidget extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.width * 0.01),
-                    child: SafeArea(
-                        child: Text(
-                      "$desc",
-                      style: TextStyle(fontSize: 14),
-                    )),
+                    child: Text(
+                      "${widget.desc}",
+                      style: TextStyle(fontSize: 10.sp, color: kGreyDark),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(
@@ -70,15 +85,22 @@ class MenuWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "₹$price",
-                          style: TextStyle(fontSize: 16),
+                          "₹${widget.price}",
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: GestureDetector(
                             child: Text(
                               "EDIT",
-                              style: TextStyle(color: Colors.red),
+                              style: TextStyle(
+                                color: _switchValue ? kRed : kGreyDark,
+                                fontSize: 8.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             onTap: null,
                           ),
@@ -91,7 +113,15 @@ class MenuWidget extends StatelessWidget {
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.1,
-              child: CupertinoSwitch(value: _switchValue, onChanged: null),
+              child: CupertinoSwitch(
+                activeColor: kGreen,
+                value: _switchValue,
+                onChanged: (bool newswitchValue) {
+                  setState(() {
+                    _switchValue = newswitchValue;
+                  });
+                },
+              ),
             )
           ],
         ),

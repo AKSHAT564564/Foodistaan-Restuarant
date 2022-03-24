@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:foodistaan_restuarant/constants.dart';
 import 'package:foodistaan_restuarant/functions/order_functions.dart';
 import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
+import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool _switchValue = false;
+  bool _notificationVisible = true;
 
   TabController? tabController;
   PageController _pageController = PageController();
@@ -59,8 +62,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             // shrinkWrap: true,
             children: [
               Container(
-                padding: EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height * 0.14,
+                padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
+                height: 15.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -71,26 +74,33 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CupertinoSwitch(
-                                value: _switchValue,
-                                onChanged: (newSwitchValue) {
-                                  setState(() {
-                                    _switchValue = newSwitchValue;
-                                  });
-                                }),
+                              activeColor: kGreen,
+                              value: _switchValue,
+                              onChanged: (bool newswitchValue) {
+                                setState(() {
+                                  _switchValue = newswitchValue;
+                                });
+                              },
+                            ),
                             Text(
-                              "Outlet online",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.green),
+                              _switchValue ? "Outlet Online" : "Outlet Offline",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: _switchValue ? kGreenO : kRed,
+                              ),
                             )
                           ],
                         ),
                         GestureDetector(
                           onTap: null,
-                          child: Text(
-                            "Update you Restraunt Info.",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.red,
+                          child: Visibility(
+                            visible: _notificationVisible,
+                            child: Text(
+                              "Update your Restraunt Info.",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: kRed,
+                              ),
                             ),
                           ),
                         ),
@@ -101,11 +111,48 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       children: [
                         Text(
                           "Accepting Orders",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 16.sp),
                         ),
-                        Icon(
-                          Icons.notification_important,
-                          size: 20,
+                        Container(
+                          child: Stack(
+                            children: [
+                              Container(
+                                height: 6.h,
+                                width: 6.h,
+                                child: GestureDetector(
+                                  onTap: (() {
+                                    setState(() {
+                                      _notificationVisible =
+                                          !_notificationVisible;
+                                    });
+                                  }),
+                                  child: Card(
+                                    semanticContainer: true,
+                                    elevation: 0.1.h,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(1.h),
+                                    ),
+                                    child: Icon(
+                                      Icons.notification_important,
+                                      size: 18.sp,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 1.h,
+                                right: 2.w,
+                                child: Container(
+                                  height: 1.h,
+                                  width: 1.h,
+                                  decoration: BoxDecoration(
+                                      color:
+                                          _notificationVisible ? kGreen : kRed,
+                                      shape: BoxShape.circle),
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     )
@@ -113,33 +160,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height * 0.1,
+                margin: EdgeInsets.only(bottom: 1.5.h),
+                padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
+                height: 7.h,
                 child: TextFormField(
-                    decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(Icons.search),
-                        ),
-                        hintText: "Search by order ID",
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: Colors.amber,
-                              width: 2.0,
-                            )),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: Colors.amber,
-                              width: 2.0,
-                            )))),
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Icon(Icons.search),
+                    ),
+                    hintText: "Search by order ID",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: kYellow,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: kYellow,
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Container(
                 height: MediaQuery.of(context).size.height * .08,
                 child: TabBar(
                     controller: tabController,
-                    labelColor: Colors.yellow,
+                    labelColor: kYellow,
                     unselectedLabelColor: Colors.blue,
                     isScrollable: false,
                     enableFeedback: true,
@@ -148,7 +201,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       tabController!.index = value;
                     },
                     indicator: UnderlineTabIndicator(
-                      borderSide: BorderSide(color: Colors.yellow, width: 3),
+                      borderSide: BorderSide(color: kYellow, width: 3),
                     ),
                     tabs: [
                       Tab(

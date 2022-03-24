@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/constants.dart';
 import 'package:foodistaan_restuarant/screens/insights/insight_widget.dart';
 import 'package:foodistaan_restuarant/mainScreenFile.dart';
+import 'package:sizer/sizer.dart';
 
 class Insights extends StatefulWidget {
   Insights({Key? key}) : super(key: key);
@@ -14,17 +16,15 @@ class _InsightsState extends State<Insights> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 7.h,
         backgroundColor: Colors.white,
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.reorder, color: Colors.black),
           ),
         ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         title: Text(
           "Business Insights",
           style: TextStyle(color: Colors.black),
@@ -34,24 +34,38 @@ class _InsightsState extends State<Insights> {
       body: ListView(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.06,
+            margin: EdgeInsets.only(top: 1.5.h, left: 2.5.w, right: 2.5.w),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Text(
                     "Delivered Orders",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.sp,
+                    ),
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.2,
                   child: GestureDetector(
                     onTap: null,
-                    child: Text(
-                      "See more ",
-                      style: TextStyle(color: Colors.green, fontSize: 14),
+                    child: Row(
+                      children: [
+                        Text(
+                          "See more",
+                          style: TextStyle(
+                              color: kGreenO,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 10.sp,
+                          color: kGreenO,
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -59,9 +73,7 @@ class _InsightsState extends State<Insights> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.22,
-            child: InsightWidget(),
+            child: DeliveredOrdersInsightWidget(),
           ),
           Container(
             margin: EdgeInsets.only(
@@ -76,37 +88,51 @@ class _InsightsState extends State<Insights> {
             thickness: 5,
           ),
           Container(
-            margin: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.02,
-            ),
-            height: MediaQuery.of(context).size.height * 0.06,
+            margin: EdgeInsets.only(top: 1.5.h, left: 2.5.w, right: 2.5.w),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Rejected Orders",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                        ),
                       ),
                       Text(
                         "Lost sales from orders rejected",
-                        style: TextStyle(color: Colors.black, fontSize: 12),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 10.sp),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.2,
                   child: GestureDetector(
                     onTap: null,
-                    child: Text(
-                      "See more ",
-                      style: TextStyle(color: Colors.green, fontSize: 14),
+                    child: Row(
+                      children: [
+                        Text(
+                          "See more",
+                          style: TextStyle(
+                              color: kGreenO,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 10.sp,
+                          color: kGreenO,
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -114,9 +140,7 @@ class _InsightsState extends State<Insights> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.22,
-            child: InsightWidget(),
+            child: RejectedOrdersInsightWidget(),
           ),
         ],
       ),

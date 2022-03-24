@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/constants.dart';
 
 import 'package:foodistaan_restuarant/model/categoriesModel.dart';
 import 'package:foodistaan_restuarant/model/productModel.dart';
@@ -64,7 +65,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   height: 8.5.h,
                                   width: 8.5.h,
                                   decoration: BoxDecoration(
-                                    color: Colors.amber[100],
+                                    color: kAmberLight,
                                     // borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Image(
@@ -173,7 +174,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                     height: 17.h,
                     width: 17.h,
                     decoration: BoxDecoration(
-                      color: Colors.amber[100],
+                      color: kAmberLight,
                       // borderRadius: BorderRadius.circular(15),
                     ),
                     child: Image(
@@ -248,7 +249,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                       width: 15.w,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.amber[100],
+                        color: kAmberLight,
                         borderRadius: BorderRadius.circular(1.5.h),
                       ),
                       child: Text(
@@ -326,7 +327,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                     height: 17.h,
                     width: 17.h,
                     decoration: BoxDecoration(
-                      color: Colors.amber[100],
+                      color: kAmberLight,
                       // borderRadius: BorderRadius.circular(15),
                     ),
                     child: Image(
@@ -408,7 +409,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                       width: 15.w,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.amber[100],
+                        color: kAmberLight,
                         borderRadius: BorderRadius.circular(1.5.h),
                       ),
                       child: Text(
