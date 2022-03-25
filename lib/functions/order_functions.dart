@@ -162,8 +162,8 @@ class OrderFunctions {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
-        .where('vendor-id', isEqualTo: findVendorId())
-        .where('order-status', isEqualTo: 'picked-up')
+        .where('vendor-id', isEqualTo: 'StreetFood1')
+        .where('order-status', isEqualTo: 'picked')
         .snapshots();
 
     return StreamBuilder(
@@ -222,6 +222,7 @@ class OrderFunctions {
     String _orderStatus = orderStatus.toString().toUpperCase();
     var stream = FirebaseFirestore.instance
         .collection('live-orders')
+        .where('vendor-id', isEqualTo: 'StreetFood1')
         .where('order-status', isEqualTo: orderStatus)
         .snapshots();
 
@@ -229,9 +230,24 @@ class OrderFunctions {
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
+            List recentOrders = [];
+            for (var i = 0; i < snapshot.data!.docs.length; i++) {
+              Map<dynamic, dynamic> orderData =
+                  snapshot.data!.docs[i].data() as Map<dynamic, dynamic>;
+
+              final last24Hours = orderData['time']
+                  .toDate()
+                  .compareTo(DateTime.now().subtract(Duration(hours: 24)));
+
+              if (last24Hours == 1) {
+                recentOrders.add([]);
+              } else {
+                continue;
+              }
+            }
             var count = snapshot.data!.docs.length;
             return Text(
-              "$_orderStatus ($count)",
+              "$_orderStatus ${recentOrders.length}",
               style: TextStyle(
                 color: Colors.black,
               ),
