@@ -2,7 +2,7 @@
     package="com.example.foodistaan_restuarant">
    <application
         android:label="foodistaan_restuarant"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -140,6 +140,8 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) {
           return Sizer(builder: (context, orientation, deviceType) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Streato Restaurants',
               initialRoute:
                   FirebaseAuth.instance.currentUser != null ? 'Main' : 'L',
               routes: {
@@ -149,7 +151,6 @@ class _MyAppState extends State<MyApp> {
                 'H': (context) => HomePage(),
                 'I': (context) => Insights(),
               },
-              debugShowCheckedModeBanner: false,
             );
           });
         });

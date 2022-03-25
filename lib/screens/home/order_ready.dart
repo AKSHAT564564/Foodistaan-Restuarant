@@ -112,7 +112,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget>
                 await Alert(
                   context: context,
                   type: AlertType.warning,
-                  title: "Is Order Picked Up",
+                  title: "Is Order Ready",
                   desc: "This Will Update Order Status",
                   buttons: [
                     DialogButton(
@@ -143,7 +143,7 @@ class _OrderReadyWidgetState extends State<OrderReadyWidget>
                 return;
               },
               child: Text(
-                "Is Order PickedUp?",
+                "Is Order Ready?",
                 style: TextStyle(color: Colors.white),
               ),
             ),
