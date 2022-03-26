@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';
 import 'package:sizer/sizer.dart';
 
@@ -64,7 +65,14 @@ class _MenuState extends State<Menu> {
                         )
                       ],
                     ),
-                    onTap: null,
+                    onTap: (() {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              EditMenuItemScreen(),
+                        ),
+                      );
+                    }),
                   ),
                 ),
               ],
