@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/model/menuItemModel.dart';
+import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
+import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:sizer/sizer.dart';
 
 class MenuWidget extends StatefulWidget {
@@ -91,18 +94,28 @@ class _MenuWidgetState extends State<MenuWidget> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: GestureDetector(
-                            child: Text(
-                              "EDIT",
-                              style: TextStyle(
-                                color: _switchValue ? kRed : kGreyDark,
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.w600,
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    EditMenuItemScreen(),
                               ),
+                            );
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: GestureDetector(
+                              child: Text(
+                                "EDIT",
+                                style: TextStyle(
+                                  color: _switchValue ? kRed : kGreyDark,
+                                  fontSize: 8.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              onTap: null,
                             ),
-                            onTap: null,
                           ),
                         )
                       ],

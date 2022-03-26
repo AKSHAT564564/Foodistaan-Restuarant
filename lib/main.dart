@@ -2,14 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:foodistaan_restuarant/model/categoriesModel.dart';
+import 'package:foodistaan_restuarant/model/menuItemModel.dart';
 import 'package:foodistaan_restuarant/model/productModel.dart';
 import 'package:foodistaan_restuarant/provider/categorieProvider.dart';
+import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
 import 'package:foodistaan_restuarant/provider/productsProvider.dart';
 import 'package:foodistaan_restuarant/screens/categories/categoriesScreen.dart';
 import 'package:foodistaan_restuarant/screens/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:foodistaan_restuarant/screens/insights/insights.dart';
 import 'package:foodistaan_restuarant/screens/login/login.dart';
+import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/offers/offer.dart';
 import 'package:foodistaan_restuarant/screens/splash_screen.dart';
 import 'package:foodistaan_restuarant/mainScreenFile.dart';
@@ -150,6 +153,7 @@ class _MyAppState extends State<MyApp> {
                 'L': (context) => LoginScreen(),
                 'H': (context) => HomePage(),
                 'I': (context) => Insights(),
+                EditMenuItemScreen.routeName: (ctx) => EditMenuItemScreen(),
               },
             );
           });
