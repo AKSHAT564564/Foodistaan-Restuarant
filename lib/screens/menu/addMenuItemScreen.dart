@@ -5,14 +5,14 @@ import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class EditMenuItemScreen extends StatefulWidget {
-  static const routeName = '/edit-MenuItem';
+class AddMenuItemScreen extends StatefulWidget {
+  static const routeName = '/add-MenuItem';
 
   @override
-  _EditMenuItemScreenState createState() => _EditMenuItemScreenState();
+  _AddMenuItemScreenState createState() => _AddMenuItemScreenState();
 }
 
-class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
+class _AddMenuItemScreenState extends State<AddMenuItemScreen> {
   final _idFocusNode = FocusNode();
   final _titleFocusNode = FocusNode();
   final _cuisineFocusNode = FocusNode();
@@ -25,7 +25,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
   final _imageController = TextEditingController();
   final _imageFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
-  var _isInit = true;
+
   var _isLoading = false;
   var _editedMenuItem = MenuItem(
     id: "",
@@ -54,31 +54,6 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
   void initState() {
     _imageFocusNode.addListener(_updateImage);
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    if (_isInit) {
-      final menuItemId = ModalRoute.of(context)!.settings.arguments as String;
-      if (menuItemId.isNotEmpty) {
-        _editedMenuItem =
-            Provider.of<MenuItems>(context, listen: false).findById(menuItemId);
-        _initValues = {
-          'id': _editedMenuItem.id,
-          'title': _editedMenuItem.title,
-          'cuisine': _editedMenuItem.cuisine,
-          'description': _editedMenuItem.description,
-          'maxQuantity': _editedMenuItem.maxQuantity,
-          'veg': _editedMenuItem.veg.toString(),
-          'discountOff': _editedMenuItem.discountOff.toString(),
-          'price': _editedMenuItem.price.toString(),
-          'image': "",
-        };
-        _imageController.text = _editedMenuItem.image;
-      }
-    }
-    _isInit = false;
-    super.didChangeDependencies();
   }
 
   @override
@@ -119,11 +94,10 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
     setState(() {
       _isLoading = true;
     });
+
     try {
-      if (_editedMenuItem.id != null) {
-        await Provider.of<MenuItems>(context, listen: false)
-            .updateMenuItem(_editedMenuItem.id, _editedMenuItem);
-      }
+      await Provider.of<MenuItems>(context, listen: false)
+          .addMenuItem(_editedMenuItem);
     } catch (error) {
       await showDialog(
         context: context,
@@ -141,6 +115,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
         ),
       );
     }
+
     setState(() {
       _isLoading = false;
     });
@@ -167,7 +142,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
           ),
         ],
         title: Text(
-          "Edit Menu Item",
+          "Add New Menu Item",
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -513,7 +488,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
                           keyboardType: TextInputType.number,
                           focusNode: _priceFocusNode,
                           onFieldSubmitted: (_) {
-                            _saveForm();
+                            null;
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -561,7 +536,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
                       _saveForm();
                     },
                     child: Text(
-                      "Edit Food Item",
+                      "Add Food Item",
                       style: TextStyle(fontSize: 14.sp, color: Colors.white),
                     ),
                   ),

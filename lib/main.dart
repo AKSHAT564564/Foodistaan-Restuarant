@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 
 import 'package:foodistaan_restuarant/model/categoriesModel.dart';
 import 'package:foodistaan_restuarant/model/menuItemModel.dart';
+
 import 'package:foodistaan_restuarant/model/productModel.dart';
 import 'package:foodistaan_restuarant/provider/categorieProvider.dart';
 import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
+
 import 'package:foodistaan_restuarant/provider/productsProvider.dart';
-import 'package:foodistaan_restuarant/screens/categories/categoriesScreen.dart';
+
 import 'package:foodistaan_restuarant/screens/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:foodistaan_restuarant/screens/insights/insights.dart';
 import 'package:foodistaan_restuarant/screens/login/login.dart';
+import 'package:foodistaan_restuarant/screens/menu/addMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
-import 'package:foodistaan_restuarant/screens/offers/offer.dart';
+
 import 'package:foodistaan_restuarant/screens/splash_screen.dart';
 import 'package:foodistaan_restuarant/mainScreenFile.dart';
 import 'package:provider/provider.dart';
@@ -139,6 +142,34 @@ class _MyAppState extends State<MyApp> {
               ),
             ]),
           ),
+          ChangeNotifierProvider<MenuItems>(
+            create: (ctx) => MenuItems([
+              MenuItem(
+                id: "farm-house",
+                title: "Farm House",
+                cuisine: "pizza",
+                description:
+                    "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+                maxQuantity: "5",
+                veg: false,
+                discountOff: 5,
+                price: 99.0,
+                image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
+              ),
+              MenuItem(
+                id: "margherita",
+                title: "Margheita",
+                cuisine: "pizza",
+                description:
+                    "A hugely popular margherita, with a deliciously tangy single cheese topping",
+                maxQuantity: "5",
+                veg: true,
+                discountOff: 0,
+                price: 99.0,
+                image: "https://www.dominos.co.in/files/items/Margherit.jpg",
+              )
+            ]),
+          ),
         ],
         builder: (context, child) {
           return Sizer(builder: (context, orientation, deviceType) {
@@ -154,6 +185,7 @@ class _MyAppState extends State<MyApp> {
                 'H': (context) => HomePage(),
                 'I': (context) => Insights(),
                 EditMenuItemScreen.routeName: (ctx) => EditMenuItemScreen(),
+                AddMenuItemScreen.routeName: (ctx) => AddMenuItemScreen(),
               },
             );
           });
