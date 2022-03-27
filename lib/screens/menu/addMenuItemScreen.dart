@@ -413,7 +413,7 @@ class _AddMenuItemScreenState extends State<AddMenuItemScreen> {
                           initialValue: _initValues['veg'],
                           decoration: InputDecoration(labelText: 'Veg'),
                           textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.text,
                           focusNode: _vegFocusNode,
                           onFieldSubmitted: (_) {
                             FocusScope.of(context)

@@ -102,7 +102,7 @@ class MenuItems with ChangeNotifier {
       if (menuIndex >= 0) {
         _items[menuIndex] = updateMenuItem;
         notifyListeners();
-        print('....Product Updated...${updateMenuItem}');
+        // print('....Product Updated...${updateMenuItem}');
       } else {
         print('....Not Update...');
       }

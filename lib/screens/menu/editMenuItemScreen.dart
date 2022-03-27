@@ -438,7 +438,7 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
                           initialValue: _initValues['veg'],
                           decoration: InputDecoration(labelText: 'Veg'),
                           textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.text,
                           focusNode: _vegFocusNode,
                           onFieldSubmitted: (_) {
                             FocusScope.of(context)

@@ -203,7 +203,7 @@ class OrderFunctions {
                           return OrderPicked(orderData: recentOrders[index]);
                         });
                   } else {
-                    return Text('No orders in last 24 hoyrs');
+                    return Text('No orders in last 24 hours');
                   }
                 }
               } else {
