@@ -26,6 +26,7 @@ class _OrderPickedState extends State<OrderPicked> {
         children: [
           Container(
             margin: EdgeInsets.only(left: 1.5.h, right: 1.5.h),
+            height: MediaQuery.of(context).size.height * 0.04,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -54,6 +55,7 @@ class _OrderPickedState extends State<OrderPicked> {
             ),
           ),
           Container(
+            margin: EdgeInsets.only(left: 1.5.h, right: 1.5.h),
             child: Row(
               children: [
                 Container(
@@ -108,7 +110,7 @@ class _OrderPickedState extends State<OrderPicked> {
                 await Alert(
                   context: context,
                   type: AlertType.warning,
-                  title: "Is Order Ready",
+                  title: "Is Order Picked",
                   desc: "This Will Update Order Status",
                   buttons: [
                     DialogButton(
@@ -139,7 +141,7 @@ class _OrderPickedState extends State<OrderPicked> {
                 return;
               },
               child: Text(
-                "Is Order Ready?",
+                "Is Order Picked?",
                 style: TextStyle(color: Colors.white),
               ),
             ),

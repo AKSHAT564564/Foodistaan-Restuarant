@@ -1,20 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/model/menuItemModel.dart';
+import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
+import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:sizer/sizer.dart';
 
 class MenuWidget extends StatefulWidget {
-  MenuWidget({
-    required this.image,
-    required this.name,
-    required this.desc,
-    required this.price,
-  });
-
-  final String image;
-  final String name;
-  final String desc;
+  final String id;
+  final String title;
+  final String cuisine;
+  final String description;
+  final String maxQuantity;
+  final bool veg;
   final double price;
+  final int discountOff;
+  final String image;
+
+  MenuWidget({
+    required this.id,
+    required this.title,
+    required this.cuisine,
+    required this.description,
+    required this.maxQuantity,
+    required this.veg,
+    required this.price,
+    required this.discountOff,
+    required this.image,
+  });
 
   @override
   State<MenuWidget> createState() => _MenuWidgetState();
@@ -42,10 +55,11 @@ class _MenuWidgetState extends State<MenuWidget> {
               margin: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.02),
               width: MediaQuery.of(context).size.width * 0.2,
-              child: Image.asset(
-                'assets/images/${widget.image}',
-                fit: BoxFit.fill,
-              ),
+              // child: Image.asset(
+              //   'assets/images/${widget.image}',
+              //   fit: BoxFit.fill,
+              // ),
+              child: Image.network('${widget.image}', fit: BoxFit.fill),
             ),
             Container(
               padding: const EdgeInsets.all(5.0),
@@ -59,7 +73,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   Row(
                     children: [
                       Text(
-                        "${widget.name}",
+                        "${widget.title}",
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
@@ -75,7 +89,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.width * 0.01),
                     child: Text(
-                      "${widget.desc}",
+                      "${widget.description}",
                       style: TextStyle(fontSize: 10.sp, color: kGreyDark),
                     ),
                   ),
@@ -91,9 +105,20 @@ class _MenuWidgetState extends State<MenuWidget> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: GestureDetector(
+                        GestureDetector(
+                          onTap: (() {
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(
+                            //     builder: (BuildContext context) =>
+                            //         EditMenuItemScreen(),
+                            //   ),
+                            // );
+                            Navigator.of(context).pushNamed(
+                                EditMenuItemScreen.routeName,
+                                arguments: widget.id);
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
                             child: Text(
                               "EDIT",
                               style: TextStyle(
@@ -102,7 +127,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            onTap: null,
                           ),
                         )
                       ],

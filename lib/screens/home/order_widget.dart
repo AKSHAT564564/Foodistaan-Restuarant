@@ -28,6 +28,7 @@ class _OrderWidgetState extends State<OrderWidget>
         children: [
           Container(
             margin: EdgeInsets.only(left: 1.5.h, right: 1.5.h),
+            height: MediaQuery.of(context).size.height * 0.04,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -111,7 +112,7 @@ class _OrderWidgetState extends State<OrderWidget>
                 await Alert(
                   context: context,
                   type: AlertType.warning,
-                  title: "Is Order Ready",
+                  title: "Is Order Prepared",
                   desc: "This Will Update Order Status",
                   buttons: [
                     DialogButton(
@@ -142,7 +143,7 @@ class _OrderWidgetState extends State<OrderWidget>
                 return;
               },
               child: Text(
-                "Is Order Ready?",
+                "Is Order Prepared?",
                 style: TextStyle(color: Colors.white),
               ),
             ),

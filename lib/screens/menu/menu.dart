@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/screens/menu/addMenuItemScreen.dart';
+import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';
 import 'package:sizer/sizer.dart';
 
@@ -64,7 +66,16 @@ class _MenuState extends State<Menu> {
                         )
                       ],
                     ),
-                    onTap: null,
+                    onTap: (() {
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (BuildContext context) =>
+                      //         EditMenuItemScreen(),
+                      //   ),
+                      // );
+                      Navigator.of(context)
+                          .pushNamed(AddMenuItemScreen.routeName);
+                    }),
                   ),
                 ),
               ],
@@ -120,19 +131,33 @@ class _MenuState extends State<Menu> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: MenuWidget(
-                    name: "Masala Dosa",
-                    image: "dosa.png",
-                    desc: "Prepared freshly with some basil and Kadi Patta",
-                    price: 100,
+                    id: "margherita",
+                    title: "Margheita",
+                    cuisine: "pizza",
+                    description:
+                        "A hugely popular margherita, with a deliciously tangy single cheese topping",
+                    maxQuantity: "5",
+                    veg: true,
+                    discountOff: 0,
+                    price: 99.0,
+                    image:
+                        "https://www.dominos.co.in/files/items/Margherit.jpg",
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: MenuWidget(
-                    name: "Masala Dosa",
-                    image: "dosa.png",
-                    desc: "Prepared freshly with some basil and Kadi Patta",
-                    price: 100,
+                    id: "margherita",
+                    title: "Margheita",
+                    cuisine: "pizza",
+                    description:
+                        "A hugely popular margherita, with a deliciously tangy single cheese topping",
+                    maxQuantity: "5",
+                    veg: true,
+                    discountOff: 0,
+                    price: 99.0,
+                    image:
+                        "https://www.dominos.co.in/files/items/Margherit.jpg",
                   ),
                 ),
                 Container(
@@ -146,19 +171,33 @@ class _MenuState extends State<Menu> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: MenuWidget(
-                    name: "Momos",
-                    image: "momos.png",
-                    desc: "Prepared freshly with some basil and Kadi Patta",
-                    price: 120,
+                    id: "farm-house",
+                    title: "Farm House",
+                    cuisine: "pizza",
+                    description:
+                        "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+                    maxQuantity: "5",
+                    veg: false,
+                    discountOff: 5,
+                    price: 99.0,
+                    image:
+                        "https://www.dominos.co.in/files/items/Farmhouse.jpg",
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: MenuWidget(
-                    name: "Momos",
-                    image: "momos.png",
-                    desc: "Prepared freshly with some basil and Kadi Patta",
-                    price: 120,
+                    id: "farm-house",
+                    title: "Farm House",
+                    cuisine: "pizza",
+                    description:
+                        "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+                    maxQuantity: "5",
+                    veg: false,
+                    discountOff: 5,
+                    price: 99.0,
+                    image:
+                        "https://www.dominos.co.in/files/items/Farmhouse.jpg",
                   ),
                 )
               ],

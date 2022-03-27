@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
@@ -205,7 +203,7 @@ class OrderFunctions {
                           return OrderPicked(orderData: recentOrders[index]);
                         });
                   } else {
-                    return Text('No orders in last 24 hoyrs');
+                    return Text('No orders in last 24 hours');
                   }
                 }
               } else {
