@@ -43,7 +43,32 @@ class MenuItems with ChangeNotifier {
   Future<void> fetchAndSetMenuItems() async {
     try {
       final List<MenuItem> loadedMenuItems = [];
-      final extractedData = _items;
+      final extractedData = [
+        MenuItem(
+          id: "farm-house",
+          title: "Farm House",
+          cuisine: "pizza",
+          description:
+              "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+          maxQuantity: "5",
+          veg: false,
+          discountOff: 5,
+          price: 99.0,
+          image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
+        ),
+        MenuItem(
+          id: "margherita",
+          title: "Margheita",
+          cuisine: "pizza",
+          description:
+              "A hugely popular margherita, with a deliciously tangy single cheese topping",
+          maxQuantity: "5",
+          veg: true,
+          discountOff: 0,
+          price: 99.0,
+          image: "https://www.dominos.co.in/files/items/Margherit.jpg",
+        ),
+      ];
       if (extractedData == null) {
         return;
       }

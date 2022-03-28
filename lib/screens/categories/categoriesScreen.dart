@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 
 import 'package:foodistaan_restuarant/model/categoriesModel.dart';
 import 'package:foodistaan_restuarant/model/productModel.dart';

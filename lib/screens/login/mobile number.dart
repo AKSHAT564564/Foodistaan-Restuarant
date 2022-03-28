@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 // import 'package:foodistan/login/enter%20code.dart';
 
 class Login extends StatefulWidget {
@@ -66,13 +67,13 @@ class _LoginState extends State<Login> {
                     children: [
                       Icon(
                         Icons.help,
-                        color: Colors.yellow,
+                        color: kYellow,
                         size: 18,
                       ),
                       Text(
                         " Help",
                         style: TextStyle(
-                            color: Colors.yellow,
+                            color: kYellow,
                             fontSize: 16,
                             fontWeight: FontWeight.w600),
                       )

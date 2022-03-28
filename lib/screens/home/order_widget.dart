@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/functions/order_functions.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';

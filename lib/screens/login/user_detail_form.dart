@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 
 class UserDetail extends StatefulWidget {
   String phone_number;
@@ -135,7 +136,7 @@ class _UserDetailState extends State<UserDetail> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFF7C12B),
+                  primary: kYellow,
                   fixedSize: Size(100, 48),
                 ),
               ),

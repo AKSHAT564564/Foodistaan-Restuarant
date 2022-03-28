@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 
 class UserDetail extends StatefulWidget {
   String phone_number;
@@ -52,15 +53,13 @@ class _UserDetailState extends State<UserDetail> {
                 controller: nameController,
                 //keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  focusColor: Colors.yellow,
+                  focusColor: kYellow,
                   hintText: 'Name',
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color(0xFFF7C12B), width: 3.0),
+                    borderSide: BorderSide(color: kYellow, width: 3.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color(0xFFF7C12B), width: 3.0),
+                    borderSide: BorderSide(color: kYellow, width: 3.0),
                   ),
                 ),
               ),
@@ -76,15 +75,13 @@ class _UserDetailState extends State<UserDetail> {
                 controller: emailController,
                 //keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  focusColor: Colors.yellow,
+                  focusColor: kYellow,
                   hintText: 'Email-id',
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color(0xFFF7C12B), width: 3.0),
+                    borderSide: BorderSide(color: kYellow, width: 3.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color(0xFFF7C12B), width: 3.0),
+                    borderSide: BorderSide(color: kYellow, width: 3.0),
                   ),
                 ),
               ),
@@ -112,7 +109,7 @@ class _UserDetailState extends State<UserDetail> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFF7C12B),
+                  primary: kYellow,
                   fixedSize: Size(100, 48),
                 ),
               ),

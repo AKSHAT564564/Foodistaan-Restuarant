@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 
 class EnterCode extends StatefulWidget {
   final String number;
@@ -239,7 +240,7 @@ class _EnterCodeState extends State<EnterCode> {
                         Text(
                           "RESENT OTP",
                           style: TextStyle(
-                            color: Colors.orange,
+                            color: kYellow,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
