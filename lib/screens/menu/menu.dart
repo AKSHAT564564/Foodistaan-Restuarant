@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/screens/menu/addMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';

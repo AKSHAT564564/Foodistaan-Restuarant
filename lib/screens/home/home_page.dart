@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/functions/order_functions.dart';
 import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
 import 'package:foodistaan_restuarant/screens/home/order_ready.dart';

@@ -5,6 +5,7 @@ import 'package:foodistaan_restuarant/screens/insights/insights.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu.dart';
 import 'package:foodistaan_restuarant/screens/offers/offer.dart';
 import 'package:foodistaan_restuarant/screens/payments/payment.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
 
 class MainScreenFile extends StatefulWidget {
   MainScreenFile({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _mainScreenFileState extends State<MainScreenFile> {
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Color(0xff0E1829),
-        selectedItemColor: Color(0xffFAC05E),
+        selectedItemColor: kYellow,
         items: [
           BottomNavigationBarItem(
             icon: Icon(

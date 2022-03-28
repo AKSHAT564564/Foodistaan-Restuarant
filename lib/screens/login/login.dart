@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:foodistaan_restuarant/constants.dart';
+import 'package:foodistaan_restuarant/utils/constants.dart';
+import 'package:foodistaan_restuarant/utils/customLoadingSpinner.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sizer/sizer.dart';
 
@@ -275,6 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ModalProgressHUD(
+        progressIndicator: CustomLoadingSpinner(),
         inAsyncCall: showSpinner,
         child: Stack(
           children: [
