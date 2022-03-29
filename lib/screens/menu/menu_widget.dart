@@ -32,7 +32,7 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  bool _switchValue = false;
+  bool _isMenuOnline = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +41,11 @@ class _MenuWidgetState extends State<MenuWidget> {
         foregroundDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.black, width: 0.5),
-            color: _switchValue ? null : kGreyDark2.withOpacity(0.5)),
+            color: _isMenuOnline ? null : kGreyDark2.withOpacity(0.5)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.black, width: 0.5),
-          color: _switchValue ? kAmberLight : kGreyLight,
+          color: _isMenuOnline ? kAmberLight : kGreyLight,
         ),
         child: Row(
           children: [
@@ -77,17 +77,24 @@ class _MenuWidgetState extends State<MenuWidget> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Image.asset('assets/images/veg.png'),
+                      Container(
+                        height: 1.h,
+                        width: 1.h,
+                        child: Image.asset(
+                          widget.veg
+                              ? 'assets/images/non-veg.png'
+                              : 'assets/images/veg.png',
+                          fit: BoxFit.fill,
+                        ),
                       )
                     ],
                   ),
                   Container(
                     margin: EdgeInsets.only(
+                        right: 0.8.w,
                         top: MediaQuery.of(context).size.width * 0.01),
                     child: Text(
-                      "${widget.description}",
+                      "${(widget.description.length > 60) ? widget.description.substring(0, 60) + '...' : widget.description}",
                       style: TextStyle(fontSize: 10.sp, color: kGreyDark),
                     ),
                   ),
@@ -102,6 +109,9 @@ class _MenuWidgetState extends State<MenuWidget> {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        SizedBox(
+                          width: 1.w,
                         ),
                         GestureDetector(
                           onTap: (() {
@@ -120,7 +130,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             child: Text(
                               "EDIT",
                               style: TextStyle(
-                                color: _switchValue ? kRed : kGreyDark,
+                                color: _isMenuOnline ? kRed : kGreyDark,
                                 fontSize: 8.sp,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -137,10 +147,10 @@ class _MenuWidgetState extends State<MenuWidget> {
               width: MediaQuery.of(context).size.width * 0.1,
               child: CupertinoSwitch(
                 activeColor: kGreen,
-                value: _switchValue,
+                value: _isMenuOnline,
                 onChanged: (bool newswitchValue) {
                   setState(() {
-                    _switchValue = newswitchValue;
+                    _isMenuOnline = newswitchValue;
                   });
                 },
               ),

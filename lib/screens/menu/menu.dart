@@ -14,7 +14,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  bool _switchValue = false;
+  bool _isOutletOnline = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,18 +31,18 @@ class _MenuState extends State<Menu> {
                   children: [
                     CupertinoSwitch(
                       activeColor: kGreen,
-                      value: _switchValue,
+                      value: _isOutletOnline,
                       onChanged: (bool newswitchValue) {
                         setState(() {
-                          _switchValue = newswitchValue;
+                          _isOutletOnline = newswitchValue;
                         });
                       },
                     ),
                     Text(
-                      _switchValue ? "Outlet Online" : "Outlet Offline",
+                      _isOutletOnline ? "Outlet Online" : "Outlet Offline",
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: _switchValue ? kGreenO : kRed,
+                        color: _isOutletOnline ? kGreenO : kRed,
                       ),
                     )
                   ],
@@ -54,14 +54,14 @@ class _MenuState extends State<Menu> {
                       children: [
                         Icon(
                           Icons.add_circle_rounded,
-                          color: _switchValue ? kYellow : kGrey,
+                          color: _isOutletOnline ? kYellow : kGrey,
                           size: 32.sp,
                         ),
                         Text(
                           "Add new Item",
                           style: TextStyle(
                             fontSize: 10.sp,
-                            color: _switchValue ? Colors.black : kGrey,
+                            color: _isOutletOnline ? Colors.black : kGrey,
                           ),
                         )
                       ],

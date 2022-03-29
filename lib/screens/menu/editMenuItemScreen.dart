@@ -184,12 +184,17 @@ class _EditMenuItemScreenState extends State<EditMenuItemScreen> {
                 Container(
                   height: 100.h,
                   width: 100.w,
-                  margin: EdgeInsets.only(bottom: 2.5.h),
-                  padding: EdgeInsets.all(1.h),
+                  margin: EdgeInsets.only(
+                    bottom: 2.5.h,
+                  ),
+                  padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
                   child: Form(
                     key: _form,
                     child: ListView(
                       children: <Widget>[
+                        SizedBox(
+                          height: 1.5.h,
+                        ),
                         Container(
                           height: 30.h,
                           child: Column(
