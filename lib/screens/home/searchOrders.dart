@@ -7,31 +7,28 @@ import 'package:foodistaan_restuarant/utils/customLoadingSpinner.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-Future<List> fetchMenu(vendor_id) async {
+Future<List> fetchOrders(vendor_id) async {
   List orderItems = [];
-  final OrderItemsList = await FirebaseFirestore.instance
+  var orderItemsList = FirebaseFirestore.instance
       .collection('live-orders')
       .where('vendor-id', isEqualTo: 'StreetFood1')
       .snapshots();
   try {
-    print(OrderItemsList);
-    // await OrderItemsList.get().then((querySnapshot) => {
-    //       querySnapshot.docs.forEach((element) {
-    //         orderItems.add(element.data());
-    //       })
-    //     });
+    print(orderItemsList);
+    await orderItemsList.forEach((element) {
+      orderItems.add(element.docs);
+    });
   } catch (e) {
     print(e.toString());
   }
-
+  print(orderItems);
   return orderItems;
 }
 
 class SearchOrders extends StatefulWidget {
   final vendorId;
 
-  final vendorName;
-  SearchOrders(this.vendorId, this.vendorName);
+  SearchOrders(this.vendorId);
 
   @override
   State<SearchOrders> createState() => _SearchOrdersState();
