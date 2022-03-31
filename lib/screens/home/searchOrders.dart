@@ -156,7 +156,7 @@ class _SearchOrdersState extends State<SearchOrders> {
                     )
                   : (orderItems.isEmpty)
                       ? Container(
-                          height: 30.h,
+                          // height: 30.h,
                           child: Center(
                             child: CustomLoadingSpinner(),
                           ),

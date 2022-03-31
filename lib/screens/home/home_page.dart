@@ -173,7 +173,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              // SearchOrders("", ""),
+              // SearchOrders(
+              //   "StreetFood1",
+              // ),
               Container(
                 margin: EdgeInsets.only(bottom: 1.5.h),
                 padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
