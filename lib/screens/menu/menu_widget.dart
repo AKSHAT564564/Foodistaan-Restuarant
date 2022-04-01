@@ -32,7 +32,13 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  bool _isMenuOnline = false;
+  late bool _isMenuOnline;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isMenuOnline = false;
+  }
 
   @override
   Widget build(BuildContext context) {

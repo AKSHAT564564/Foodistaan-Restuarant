@@ -48,34 +48,37 @@ class _MenuState extends State<Menu> {
                   ],
                 ),
                 Container(
-                  child: GestureDetector(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.add_circle_rounded,
-                          color: _isOutletOnline ? kYellow : kGrey,
-                          size: 32.sp,
-                        ),
-                        Text(
-                          "Add new Item",
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            color: _isOutletOnline ? Colors.black : kGrey,
+                  child: AbsorbPointer(
+                    absorbing: !_isOutletOnline,
+                    child: GestureDetector(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.add_circle_rounded,
+                            color: _isOutletOnline ? kYellow : kGrey,
+                            size: 32.sp,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Add new Item",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              color: _isOutletOnline ? Colors.black : kGrey,
+                            ),
+                          )
+                        ],
+                      ),
+                      onTap: (() {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (BuildContext context) =>
+                        //         EditMenuItemScreen(),
+                        //   ),
+                        // );
+                        Navigator.of(context)
+                            .pushNamed(AddMenuItemScreen.routeName);
+                      }),
                     ),
-                    onTap: (() {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (BuildContext context) =>
-                      //         EditMenuItemScreen(),
-                      //   ),
-                      // );
-                      Navigator.of(context)
-                          .pushNamed(AddMenuItemScreen.routeName);
-                    }),
                   ),
                 ),
               ],
