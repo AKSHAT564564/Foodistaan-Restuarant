@@ -164,7 +164,7 @@ class _OrderPickedState extends State<OrderPicked> {
                         ),
                         onTap: () async {
                           await OrderFunctions()
-                              .setOrderReady(widget.orderData!['order-id'])
+                              .setOrderDelivery(widget.orderData!['order-id'])
                               .then((v) {
                             Navigator.of(ctx).pop(true);
                           });

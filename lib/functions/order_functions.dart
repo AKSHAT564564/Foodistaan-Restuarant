@@ -112,6 +112,13 @@ class OrderFunctions {
         .update({'order-status': 'picked'});
   }
 
+  setOrderDelivery(orderID) async {
+    await FirebaseFirestore.instance
+        .collection('live-orders')
+        .doc(orderID)
+        .update({'order-status': 'delivery'});
+  }
+
   Widget readyOrders() {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
