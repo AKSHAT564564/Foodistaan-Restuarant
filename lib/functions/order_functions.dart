@@ -5,6 +5,7 @@ import 'package:foodistaan_restuarant/screens/home/order_ready.dart';
 import 'package:foodistaan_restuarant/screens/home/order_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sizer/sizer.dart';
 
 class OrderFunctions {
   var vendorID = FirebaseAuth.instance.currentUser!.email;
@@ -111,6 +112,13 @@ class OrderFunctions {
         .update({'order-status': 'picked'});
   }
 
+  setOrderDelivery(orderID) async {
+    await FirebaseFirestore.instance
+        .collection('live-orders')
+        .doc(orderID)
+        .update({'order-status': 'delivery'});
+  }
+
   Widget readyOrders() {
     ScrollController _controller = ScrollController();
     var stream = FirebaseFirestore.instance
@@ -203,7 +211,7 @@ class OrderFunctions {
                           return OrderPicked(orderData: recentOrders[index]);
                         });
                   } else {
-                    return Text('No orders in last 24 hours');
+                    return Center(child: Text('No orders in last 24 hours'));
                   }
                 }
               } else {
@@ -215,7 +223,7 @@ class OrderFunctions {
         });
   }
 
-  Widget getCount(orderStatus) {
+  Widget getCount(orderStatus, Color color) {
     String count = '';
     String _orderStatus = orderStatus.toString().toUpperCase();
     var stream = FirebaseFirestore.instance
@@ -245,15 +253,14 @@ class OrderFunctions {
             }
             var count = snapshot.data!.docs.length;
             return Text(
-              "$_orderStatus ${recentOrders.length}",
+              "$_orderStatus (${recentOrders.length})",
               style: TextStyle(
-                color: Colors.black,
-              ),
+                  fontSize: 12.sp, color: color, fontWeight: FontWeight.w600),
             );
           }
           return Text(
             "$_orderStatus ($count)",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(fontSize: 12.sp, color: color),
           );
         });
   }

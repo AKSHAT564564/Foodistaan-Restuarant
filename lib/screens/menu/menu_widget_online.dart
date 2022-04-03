@@ -14,7 +14,7 @@ class MenuWidgetOnline extends StatelessWidget {
   final String desc;
   final double price;
 
-  bool _switchValue = false;
+  bool _isMenuOnline = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -91,7 +91,7 @@ class MenuWidgetOnline extends StatelessWidget {
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.1,
-              child: CupertinoSwitch(value: _switchValue, onChanged: null),
+              child: CupertinoSwitch(value: _isMenuOnline, onChanged: null),
             )
           ],
         ),

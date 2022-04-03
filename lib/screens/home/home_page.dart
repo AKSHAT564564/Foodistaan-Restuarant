@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:foodistaan_restuarant/screens/home/searchOrders.dart';
 import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/functions/order_functions.dart';
 import 'package:foodistaan_restuarant/screens/home/order_picked.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  bool _switchValue = false;
+  bool _isOutletOnline = false;
   bool _notificationVisible = true;
 
   TabController? tabController;
@@ -38,17 +39,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget tabBarWidget(category, tabValue) {
     return Container(
+      width: 30.w,
       decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.grey),
+        color: (tabController!.index == tabValue) ? kYellow : Colors.white,
+        border: Border.all(
+          width: 1,
+          color: (tabController!.index == tabValue) ? kYellow : kGrey,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
       child: MaterialButton(
-          elevation: 5,
-          onPressed: () {
-            tabController!.index = tabValue;
-            _pageController.jumpToPage(tabValue);
-          },
-          child: OrderFunctions().getCount(category)),
+        padding: EdgeInsets.all(0),
+        elevation: 5,
+        onPressed: () {
+          tabController!.index = tabValue;
+          _pageController.jumpToPage(tabValue);
+          setState(() {});
+        },
+        child: OrderFunctions().getCount(
+          category,
+          (tabController!.index == tabValue) ? Colors.white : kBlack,
+        ),
+      ),
     );
   }
 
@@ -75,18 +87,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           children: [
                             CupertinoSwitch(
                               activeColor: kGreen,
-                              value: _switchValue,
+                              value: _isOutletOnline,
                               onChanged: (bool newswitchValue) {
                                 setState(() {
-                                  _switchValue = newswitchValue;
+                                  _isOutletOnline = newswitchValue;
                                 });
                               },
                             ),
                             Text(
-                              _switchValue ? "Outlet Online" : "Outlet Offline",
+                              _isOutletOnline
+                                  ? "Outlet Online"
+                                  : "Outlet Offline",
                               style: TextStyle(
                                 fontSize: 12.sp,
-                                color: _switchValue ? kGreenO : kRed,
+                                color: _isOutletOnline ? kGreenO : kRed,
                               ),
                             )
                           ],
@@ -159,6 +173,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ],
                 ),
               ),
+              // SearchOrders(
+              //   "StreetFood1",
+              // ),
               Container(
                 margin: EdgeInsets.only(bottom: 1.5.h),
                 padding: EdgeInsets.only(left: 2.5.w, right: 2.5.w),
@@ -189,20 +206,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * .08,
+                height: 8.h,
                 child: TabBar(
+                    // indicatorPadding: EdgeInsets.all(12),
                     controller: tabController,
                     labelColor: kYellow,
                     unselectedLabelColor: Colors.blue,
                     isScrollable: false,
                     enableFeedback: true,
-                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicatorSize: TabBarIndicatorSize.label,
                     onTap: (value) {
                       tabController!.index = value;
                     },
-                    indicator: UnderlineTabIndicator(
-                      borderSide: BorderSide(color: kYellow, width: 3),
-                    ),
+                    // indicator: UnderlineTabIndicator(
+                    //   borderSide: BorderSide(color: kYellow, width: 1.5.sp),
+                    // ),
+                    indicatorColor: Colors.transparent,
+                    labelPadding: EdgeInsets.zero,
                     tabs: [
                       Tab(
                         child: tabBarWidget('preparing', 0),
@@ -218,6 +238,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   onPageChanged: (v) {
                     _pageController.jumpToPage(v);
                     tabController!.index = v;
+                    setState(() {});
                   },
                 ),
               )

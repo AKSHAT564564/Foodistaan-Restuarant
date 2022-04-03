@@ -9,6 +9,7 @@ import 'package:foodistaan_restuarant/provider/categorieProvider.dart';
 import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
 
 import 'package:foodistaan_restuarant/provider/productsProvider.dart';
+import 'package:foodistaan_restuarant/provider/searchOrderProvider.dart';
 
 import 'package:foodistaan_restuarant/screens/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -170,6 +171,9 @@ class _MyAppState extends State<MyApp> {
               )
             ]),
           ),
+          // ChangeNotifierProvider.value(
+          //   value: SearchOrderProvider(),
+          // )
         ],
         builder: (context, child) {
           return Sizer(builder: (context, orientation, deviceType) {

@@ -14,7 +14,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  bool _switchValue = false;
+  bool _isOutletOnline = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,51 +31,54 @@ class _MenuState extends State<Menu> {
                   children: [
                     CupertinoSwitch(
                       activeColor: kGreen,
-                      value: _switchValue,
+                      value: _isOutletOnline,
                       onChanged: (bool newswitchValue) {
                         setState(() {
-                          _switchValue = newswitchValue;
+                          _isOutletOnline = newswitchValue;
                         });
                       },
                     ),
                     Text(
-                      _switchValue ? "Outlet Online" : "Outlet Offline",
+                      _isOutletOnline ? "Outlet Online" : "Outlet Offline",
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: _switchValue ? kGreenO : kRed,
+                        color: _isOutletOnline ? kGreenO : kRed,
                       ),
                     )
                   ],
                 ),
                 Container(
-                  child: GestureDetector(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.add_circle_rounded,
-                          color: _switchValue ? kYellow : kGrey,
-                          size: 32.sp,
-                        ),
-                        Text(
-                          "Add new Item",
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            color: _switchValue ? Colors.black : kGrey,
+                  child: AbsorbPointer(
+                    absorbing: !_isOutletOnline,
+                    child: GestureDetector(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.add_circle_rounded,
+                            color: _isOutletOnline ? kYellow : kGrey,
+                            size: 32.sp,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Add new Item",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              color: _isOutletOnline ? Colors.black : kGrey,
+                            ),
+                          )
+                        ],
+                      ),
+                      onTap: (() {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (BuildContext context) =>
+                        //         EditMenuItemScreen(),
+                        //   ),
+                        // );
+                        Navigator.of(context)
+                            .pushNamed(AddMenuItemScreen.routeName);
+                      }),
                     ),
-                    onTap: (() {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (BuildContext context) =>
-                      //         EditMenuItemScreen(),
-                      //   ),
-                      // );
-                      Navigator.of(context)
-                          .pushNamed(AddMenuItemScreen.routeName);
-                    }),
                   ),
                 ),
               ],

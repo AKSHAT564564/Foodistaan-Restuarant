@@ -107,38 +107,128 @@ class _OrderPickedState extends State<OrderPicked> {
             child: MaterialButton(
               elevation: 5,
               onPressed: () async {
-                await Alert(
+                await showDialog(
                   context: context,
-                  type: AlertType.warning,
-                  title: "Is Order Picked",
-                  desc: "This Will Update Order Status",
-                  buttons: [
-                    DialogButton(
-                      child: Text(
-                        "Yes",
-                        style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                      ),
-                      onPressed: () => OrderFunctions()
-                          .setOrderReady(widget.orderData!['order-id'])
-                          .then((v) {
-                        Navigator.pop(context);
-                      }),
-                      color: Color.fromRGBO(0, 179, 134, 1.0),
+                  builder: (ctx) => AlertDialog(
+                    alignment: Alignment.center,
+                    contentPadding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 10.0),
+                    insetPadding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.15,
+                      vertical: MediaQuery.of(context).size.height * 0.3,
                     ),
-                    DialogButton(
-                      child: Text(
-                        "No",
-                        style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                    actionsAlignment: MainAxisAlignment.spaceEvenly,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    title: Column(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          size: 40.sp,
+                          color: kGreenTag,
+                        ),
+                        Text(
+                          'Is Order Picked ?',
+                          // textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    titleTextStyle: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.black,
+                    ),
+                    content: Text(
+                      'This Will Update Order Status',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.black,
                       ),
-                      onPressed: () => Navigator.pop(context),
-                      gradient: LinearGradient(colors: [
-                        Color.fromRGBO(116, 116, 191, 1.0),
-                        Color.fromRGBO(52, 138, 199, 1.0)
-                      ]),
-                    )
-                  ],
-                ).show();
-                return;
+                    ),
+                    actions: <Widget>[
+                      InkWell(
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.0),
+                            color: kGreenTag,
+                          ),
+                          child: Text(
+                            'Yes',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () async {
+                          await OrderFunctions()
+                              .setOrderDelivery(widget.orderData!['order-id'])
+                              .then((v) {
+                            Navigator.of(ctx).pop(true);
+                          });
+                        },
+                      ),
+                      InkWell(
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.0),
+                            gradient: LinearGradient(colors: [
+                              Color.fromRGBO(116, 116, 191, 1.0),
+                              Color.fromRGBO(52, 138, 199, 1.0)
+                            ]),
+                          ),
+                          child: Text(
+                            'No',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(ctx).pop(false);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+                // await Alert(
+                //   context: context,
+                //   type: AlertType.warning,
+                //   title: "Is Order Picked",
+                //   desc: "This Will Update Order Status",
+                //   buttons: [
+                //     DialogButton(
+                //       child: Text(
+                //         "Yes",
+                //         style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                //       ),
+                // onPressed: () => OrderFunctions()
+                //     .setOrderReady(widget.orderData!['order-id'])
+                //     .then((v) {
+                //   Navigator.pop(context);
+                // }),
+                //       color: Color.fromRGBO(0, 179, 134, 1.0),
+                //     ),
+                //     DialogButton(
+                //       child: Text(
+                //         "No",
+                //         style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                //       ),
+                //       onPressed: () => Navigator.pop(context),
+                //       gradient: LinearGradient(colors: [
+                //         Color.fromRGBO(116, 116, 191, 1.0),
+                //         Color.fromRGBO(52, 138, 199, 1.0)
+                //       ]),
+                //     )
+                //   ],
+                // ).show();
+                // return;
               },
               child: Text(
                 "Is Order Picked?",
