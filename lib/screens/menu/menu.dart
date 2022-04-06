@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodistaan_restuarant/model/menuItemModel.dart';
+import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
 import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/screens/menu/addMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/editMenuItemScreen.dart';
 import 'package:foodistaan_restuarant/screens/menu/menu_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class Menu extends StatefulWidget {
@@ -16,7 +19,16 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   bool _isOutletOnline = false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Provider.of<MenuItems>(context, listen: false);
+    Provider.of<MenuItems>(context, listen: false).fetchAndSetMenuItems();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // var menuItemsProvider = Provider.of<MenuItems>(context, listen: false);
     return Scaffold(
       body: ListView(
         children: [
@@ -123,86 +135,45 @@ class _MenuState extends State<Menu> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  child: Text(
-                    "South Indian",
-                    style:
-                        TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: MenuWidget(
-                    id: "margherita",
-                    title: "Margheita",
-                    cuisine: "pizza",
-                    description:
-                        "A hugely popular margherita, with a deliciously tangy single cheese topping",
-                    maxQuantity: "5",
-                    veg: true,
-                    discountOff: 0,
-                    price: 99.0,
-                    image:
-                        "https://www.dominos.co.in/files/items/Margherit.jpg",
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: MenuWidget(
-                    id: "margherita",
-                    title: "Margheita",
-                    cuisine: "pizza",
-                    description:
-                        "A hugely popular margherita, with a deliciously tangy single cheese topping",
-                    maxQuantity: "5",
-                    veg: true,
-                    discountOff: 0,
-                    price: 99.0,
-                    image:
-                        "https://www.dominos.co.in/files/items/Margherit.jpg",
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  child: Text(
-                    "Chinese",
-                    style:
-                        TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: MenuWidget(
-                    id: "farm-house",
-                    title: "Farm House",
-                    cuisine: "pizza",
-                    description:
-                        "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
-                    maxQuantity: "5",
-                    veg: false,
-                    discountOff: 5,
-                    price: 99.0,
-                    image:
-                        "https://www.dominos.co.in/files/items/Farmhouse.jpg",
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: MenuWidget(
-                    id: "farm-house",
-                    title: "Farm House",
-                    cuisine: "pizza",
-                    description:
-                        "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
-                    maxQuantity: "5",
-                    veg: false,
-                    discountOff: 5,
-                    price: 99.0,
-                    image:
-                        "https://www.dominos.co.in/files/items/Farmhouse.jpg",
-                  ),
-                )
+                Consumer<MenuItems>(builder: (context, menuItemsProvider, _) {
+                  return menuItemsProvider.menuItems.isNotEmpty
+                      ? Container(
+                          height: 70.h,
+                          child: ListView.builder(
+                              padding: EdgeInsets.only(bottom: 8.h),
+                              itemCount: menuItemsProvider.menuItems.length,
+                              itemBuilder: ((context, index) {
+                                // print(menuItemsProvider.menuItems[index].id);
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                      top: 1.5.h, left: 2.5.w, right: 2.5.w),
+                                  child: MenuWidget(
+                                    id: menuItemsProvider.menuItems[index].id,
+                                    title: menuItemsProvider
+                                        .menuItems[index].title,
+                                    cuisine: menuItemsProvider
+                                        .menuItems[index].cuisine,
+                                    description: menuItemsProvider
+                                        .menuItems[index].description,
+                                    maxQuantity: menuItemsProvider
+                                        .menuItems[index].maxQuantity,
+                                    veg: menuItemsProvider.menuItems[index].veg,
+                                    discountOff: menuItemsProvider
+                                        .menuItems[index].discountOff,
+                                    price: menuItemsProvider
+                                        .menuItems[index].price,
+                                    image: menuItemsProvider
+                                        .menuItems[index].image,
+                                  ),
+                                );
+                              })),
+                        )
+                      : Center(
+                          child: Container(
+                            child: Text("No Category Found!"),
+                          ),
+                        );
+                }),
               ],
             ),
           ),
