@@ -18,7 +18,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   late String selectedCategorie;
   @override
   void initState() {
@@ -39,50 +39,50 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
     return SafeArea(
       child: Scaffold(
-        // key: _scaffoldKey,
-        // endDrawer: Drawer(
-        //   child: ListView(
-        //     padding: EdgeInsets.zero,
-        //     children: [
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.manage_accounts_rounded),
-        //         title: const Text('View Profile'),
-        //         onTap: () {},
-        //       ),
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.maps_home_work_rounded),
-        //         title: const Text('Address'),
-        //         onTap: () {},
-        //       ),
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.account_balance_wallet_rounded),
-        //         title: const Text('Your Bank Details'),
-        //         onTap: () {},
-        //       ),
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.history),
-        //         title: const Text('Your Order History'),
-        //         onTap: () {},
-        //       ),
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.calendar_today_rounded),
-        //         title: const Text('Offers and Deals of the day'),
-        //         onTap: () {},
-        //       ),
-        //       ListTile(
-        //         minLeadingWidth: 5.w,
-        //         leading: Icon(Icons.help_rounded),
-        //         title: const Text('Help'),
-        //         onTap: () {},
-        //       ),
-        //     ],
-        //   ),
-        // ),
+        key: _scaffoldKey,
+        endDrawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.manage_accounts_rounded),
+                title: const Text('View Profile'),
+                onTap: () {},
+              ),
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.maps_home_work_rounded),
+                title: const Text('Address'),
+                onTap: () {},
+              ),
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.account_balance_wallet_rounded),
+                title: const Text('Your Bank Details'),
+                onTap: () {},
+              ),
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.history),
+                title: const Text('Your Order History'),
+                onTap: () {},
+              ),
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.calendar_today_rounded),
+                title: const Text('Offers and Deals of the day'),
+                onTap: () {},
+              ),
+              ListTile(
+                minLeadingWidth: 5.w,
+                leading: Icon(Icons.help_rounded),
+                title: const Text('Help'),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           toolbarHeight: 7.h,
           backgroundColor: Colors.white,
@@ -96,7 +96,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   Icons.reorder_rounded,
                   color: Colors.black,
                 ),
-                // onTap: () => _scaffoldKey.currentState!.openEndDrawer(),
+                onTap: () => _scaffoldKey.currentState!.openEndDrawer(),
               ),
             ),
           ],

@@ -29,34 +29,38 @@ class _PaymentState extends State<Payment> {
             ),
             centerTitle: true,
             elevation: 0,
-            bottom: const TabBar(
-              tabs: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                  ),
-                  child: Text(
-                    'Overview',
-                    style: TextStyle(
-                      fontSize: 22,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(7.h),
+              child: const TabBar(
+                padding: EdgeInsets.zero,
+                tabs: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                    ),
+                    child: Text(
+                      'Overview',
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                  ),
-                  child: Text(
-                    'History',
-                    style: TextStyle(
-                      fontSize: 22,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                    ),
+                    child: Text(
+                      'History',
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
                     ),
                   ),
-                ),
-              ],
-              labelColor: kYellow,
-              indicatorColor: kYellow,
-              unselectedLabelColor: Colors.grey,
+                ],
+                labelColor: kYellow,
+                indicatorColor: kYellow,
+                unselectedLabelColor: Colors.grey,
+              ),
             ),
           ),
           body: TabBarView(

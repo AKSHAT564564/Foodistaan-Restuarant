@@ -79,8 +79,6 @@ class CartScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     children: <Widget>[
                       Container(
-                        // color: Colors.blue,
-
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.fill,
@@ -89,15 +87,37 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        bottom: 15.h,
-                        child: Text(
-                          'Will You Add Product In Cart ?\nYou Have Nothing In This Cart.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16.sp,
-                              color: kGrey,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold),
+                        bottom: 6.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Your cart is empty.\nAdd something to order.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: kGrey,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 1.5.h,
+                            ),
+                            ElevatedButton(
+                              child: Text('Add Items'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: kYellow,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.h),
+                                  ),
+                                  textStyle: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
                         ),
                       ),
                     ],
