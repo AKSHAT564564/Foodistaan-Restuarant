@@ -1,42 +1,41 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/model/menuItemModel.dart';
 
 class MenuItems with ChangeNotifier {
-  List<MenuItem> _items = [
-    // MenuItem(
-    //   id: "farm-house",
-    //   title: "Farm House",
-    //   cuisine: "pizza",
-    //   description:
-    //       "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
-    //   maxQuantity: "5",
-    //   veg: false,
-    //   discountOff: 5,
-    //   price: 99.0,
-    //   image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
-    // ),
-    // MenuItem(
-    //   id: "margherita",
-    //   title: "Margheita",
-    //   cuisine: "pizza",
-    //   description:
-    //       "A hugely popular margherita, with a deliciously tangy single cheese topping",
-    //   maxQuantity: "5",
-    //   veg: true,
-    //   discountOff: 0,
-    //   price: 99.0,
-    //   image: "https://www.dominos.co.in/files/items/Margherit.jpg",
-    // ),
-  ];
+  List<MenuItem>? menuItem;
 
-  MenuItems(this._items);
+  MenuItems({
+    this.menuItem,
+  });
 
-  List<MenuItem> get items {
-    return [..._items];
+  List<MenuItem> get menuItems {
+    return [...menuItem!];
   }
 
+  factory MenuItems.fromJson(String str) => MenuItems.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory MenuItems.fromMap(Map<String, dynamic> json) => MenuItems(
+        menuItem: json["MenuItem"] == null
+            ? null
+            : List<MenuItem>.from(
+                json["MenuItem"].map(
+                  (x) => MenuItem.fromMap(x),
+                ),
+              ),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "MenuItem": menuItem == null
+            ? null
+            : List<dynamic>.from(menuItem!.map((x) => x.toMap())),
+      };
+
   MenuItem findById(String id) {
-    return _items.firstWhere((item) => item.id == id);
+    return menuItem!.firstWhere((item) => item.id == id);
   }
 
 // Fetching menuItem from the firebase
@@ -53,7 +52,7 @@ class MenuItems with ChangeNotifier {
           maxQuantity: "5",
           veg: false,
           discountOff: 5,
-          price: 99.0,
+          price: 97.0,
           image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
         ),
         MenuItem(
@@ -68,26 +67,63 @@ class MenuItems with ChangeNotifier {
           price: 99.0,
           image: "https://www.dominos.co.in/files/items/Margherit.jpg",
         ),
+        MenuItem(
+          id: "farm-house1",
+          title: "Farm House1",
+          cuisine: "pizza",
+          description:
+              "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+          maxQuantity: "5",
+          veg: false,
+          discountOff: 5,
+          price: 97.0,
+          image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
+        ),
+        MenuItem(
+          id: "margherita1",
+          title: "Margheita1",
+          cuisine: "pizza",
+          description:
+              "A hugely popular margherita, with a deliciously tangy single cheese topping",
+          maxQuantity: "5",
+          veg: true,
+          discountOff: 0,
+          price: 99.0,
+          image: "https://www.dominos.co.in/files/items/Margherit.jpg",
+        ),
+        MenuItem(
+          id: "farm-house2",
+          title: "Farm House2",
+          cuisine: "pizza",
+          description:
+              "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
+          maxQuantity: "5",
+          veg: false,
+          discountOff: 5,
+          price: 97.0,
+          image: "https://www.dominos.co.in/files/items/Farmhouse.jpg",
+        ),
+        MenuItem(
+          id: "margherita2",
+          title: "Margheita2",
+          cuisine: "pizza",
+          description:
+              "A hugely popular margherita, with a deliciously tangy single cheese topping",
+          maxQuantity: "5",
+          veg: true,
+          discountOff: 0,
+          price: 99.0,
+          image: "https://www.dominos.co.in/files/items/Margherit.jpg",
+        ),
       ];
       if (extractedData == null) {
         return;
       }
-      print(extractedData.toString());
+      // print(extractedData.toString());
       extractedData.forEach((element) {
-        loadedMenuItems.add(
-          MenuItem(
-              id: element.id,
-              title: element.title,
-              cuisine: element.cuisine,
-              description: element.description,
-              maxQuantity: element.maxQuantity,
-              veg: element.veg,
-              price: element.price,
-              discountOff: element.discountOff,
-              image: element.image),
-        );
+        loadedMenuItems.add(element);
       });
-      _items = loadedMenuItems.reversed.toList();
+      menuItem = loadedMenuItems.reversed.toList();
       notifyListeners();
     } catch (error) {
       print(error);
@@ -97,6 +133,7 @@ class MenuItems with ChangeNotifier {
 
 //this function adds new menuItem
   Future<void> addMenuItem(MenuItem menuItem) async {
+    // print(menuItem.toJson());
     try {
       final newMenuItem = MenuItem(
         id: menuItem.id,
@@ -109,8 +146,9 @@ class MenuItems with ChangeNotifier {
         price: menuItem.price,
         image: menuItem.image,
       );
-      _items.add(newMenuItem);
 
+      menuItems.add(newMenuItem);
+      print(menuItems.length);
       notifyListeners();
     }
     // if we get an error during post we catch the error
@@ -122,12 +160,12 @@ class MenuItems with ChangeNotifier {
   }
 
   Future<void> updateMenuItem(String id, MenuItem updateMenuItem) async {
-    final menuIndex = _items.indexWhere((menu) => menu.id == id);
+    final menuIndex = menuItem?.indexWhere((menu) => menu.id == id);
     try {
-      if (menuIndex >= 0) {
-        _items[menuIndex] = updateMenuItem;
+      if (menuIndex! >= 0) {
+        menuItem?[menuIndex] = updateMenuItem;
         notifyListeners();
-        // print('....Product Updated...${updateMenuItem}');
+        print('....Product Updated...${updateMenuItem.toJson()}');
       } else {
         print('....Not Update...');
       }

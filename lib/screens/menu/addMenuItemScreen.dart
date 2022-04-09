@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodistaan_restuarant/utils/constants.dart';
 import 'package:foodistaan_restuarant/model/menuItemModel.dart';
 import 'package:foodistaan_restuarant/provider/menuItemsProvider.dart';
+import 'package:foodistaan_restuarant/utils/customLoadingSpinner.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -149,9 +150,10 @@ class _AddMenuItemScreenState extends State<AddMenuItemScreen> {
       ),
       body: _isLoading
           ? Center(
-              child: CircularProgressIndicator(
-                color: kYellow,
-              ),
+              // child: CircularProgressIndicator(
+              //   color: kYellow,
+              // ),
+              child: CustomLoadingSpinner(),
             )
           : Stack(
               alignment: Alignment.bottomCenter,
